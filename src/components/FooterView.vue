@@ -1,0 +1,127 @@
+<template>
+  <footer id="footer">
+    <div>
+      <h4>Email</h4>
+      <a href="#">nexus486@naver.com</a>
+    </div>
+    <div>
+      <h4>KaKao</h4>
+      <a href="#">nexus486</a>
+    </div>
+    <div>
+      <h4>social</h4>
+      <ul>
+        <li><a href="/">naver</a></li>
+        <li><a href="/">google</a></li>
+        <li><a href="/">facebook</a></li>
+        <li><a href="/">instargram</a></li>
+        <li><a href="/">github</a></li>
+      </ul>
+    </div>
+  </footer>
+</template>
+
+<style lang="scss">
+#footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: var(--dark);
+  border-top: 1px solid var(--dark_border);
+  background: var(--light);
+  display: flex;
+  align-items: center;
+  font-family: "Rajdhani";
+  z-index: 1000;
+
+  div {
+    text-align: center;
+    padding: 1.3rem;
+  }
+  h4 {
+    font-weight: 600;
+    padding: 0 0.6em;
+    text-transform: capitalize;
+  }
+  a {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--light);
+      transform: scaleX(0);
+      transition: all 0.3s ease;
+    }
+    &:hover::before {
+      transform: scaleX(1);
+    }
+  }
+  h4,
+  ul {
+    display: inline-block;
+  }
+
+  div:nth-child(1) {
+    flex: 1 1 25%;
+    border-right: 1px solid var(--dark_border);
+  }
+  div:nth-child(2) {
+    flex: 1 1 20%;
+    border-right: 1px solid var(--dark_border);
+  }
+  div:nth-child(3) {
+    flex: 1 1 55%;
+    li {
+      display: inline;
+      a {
+        display: inline-block;
+        padding: 0 0.6em;
+      }
+    }
+  }
+}
+//light .ver
+.light#footer {
+  background-color: var(--light_bg);
+  border-color: 1px solid var(--light_border);
+
+  h4 {
+    color: var(--dark);
+  }
+  a {
+    color: #000;
+    &::before {
+      background: var(--dark);
+    }
+  }
+  div {
+    border-right-color: var(--light_border);
+    li {
+      a {
+        &::before {
+          background: var(--dark);
+        }
+      }
+    }
+  }
+}
+//midia quary
+@media (max-width: 1000px) {
+  #footer {
+    div:nth-child(1) {
+      h4 {
+        display: none;
+      }
+    }
+    div:nth-child(2),
+    div:nth-child(3) {
+      display: none;
+    }
+  }
+}
+</style>
