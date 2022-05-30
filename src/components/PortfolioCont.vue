@@ -57,7 +57,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .port__cont {
-  background-color: var(--dark_bg);
+  background-color: var(--light__bg);
 }
 .port__inner {
   display: flex;
