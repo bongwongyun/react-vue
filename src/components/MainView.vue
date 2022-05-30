@@ -3,9 +3,6 @@
     <div className="main__inner">
       <div v-for="list in lists" v-bind:key="list.text">{{ list.text }}</div>
       <button v-on:click="reverseMessage">메시지 뒤집기</button>
-      <!-- <div>Are</div>
-      <div>THE</div>
-      <div>World</div> -->
     </div>
   </section>
 </template>
