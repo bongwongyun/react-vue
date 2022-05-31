@@ -4,17 +4,30 @@
       <TitleCont name1="youtube" name2="book" />
       <div class="container">
         <div class="youtube__inner">
-          <div class="youtube__search"></div>
+          <div class="youtube__search">
+            <form @submit.prevent="SearchYoutubes()">
+              <div>
+                <label for="" class="sr-only">검색하기</label>
+                <input
+                  type="search"
+                  id="search"
+                  placeholder="검색하기"
+                  v-model="search"
+                />
+                <button type="submit" value="search">검색</button>
+              </div>
+            </form>
+          </div>
           <div class="youtube__list">
             <ul>
-              <li v-for="movie in movies" :key="movie.id.videoId">
+              <li v-for="youtube in youtubes" :key="youtube.id.videoId">
                 <a href="">
                   <img
-                    :src="movie.snippet.thumbnails.medium.url"
-                    :alt="movie.snippet.title"
+                    :src="youtube.snippet.thumbnails.medium.url"
+                    :alt="youtube.snippet.title"
                   />
                   <p>
-                    {{ movie.snippet.title }}
+                    {{ youtube.snippet.title }}
                   </p>
                 </a>
               </li>
@@ -36,8 +49,8 @@ export default {
     ContactCont,
   },
   setup() {
-    const movies = ref("");
-    const SearchMovies = () => {
+    const youtubes = ref("");
+    const SearchYoutubes = () => {
       var requestOptions = {
         method: "GET",
         redirect: "follow",
@@ -48,15 +61,15 @@ export default {
       )
         .then((response) => response.json())
         .then((data) => {
-          movies.value = data.items;
-          console.log(movies);
+          youtubes.value = data.items;
+          console.log(youtubes);
         })
         .catch((error) => console.log("error", error));
     };
-    SearchMovies();
+    SearchYoutubes();
     return {
-      movies,
-      SearchMovies,
+      youtubes,
+      SearchYoutubes,
     };
   },
 };
@@ -101,7 +114,7 @@ export default {
   input {
     border: 2px solid var(--light_border);
     width: 98%;
-    background: var(--black);
+    background: var(--dark);
     border-radius: 50px;
     padding: 1rem 3rem 1rem 2rem;
     color: var(--dark);
@@ -115,8 +128,8 @@ export default {
     top: 9px;
     background: transparent;
     border: 0;
-    color: var(--dark);
-    background: #fff;
+    color: var(--light);
+    background: var(--dark);
     font-family: var(--subKor_font);
     width: 40px;
     height: 40px;
